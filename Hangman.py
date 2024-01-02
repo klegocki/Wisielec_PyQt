@@ -10,15 +10,10 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Wisielec import *
-<<<<<<< HEAD
+
 from WisielecGra import *
 from WisielecWpiszHaslo import *
-=======
-from WisielecWpiszHaslo import *
-from WisielecGra import *
 
-
->>>>>>> 185f920 (Ustalanie pseudonimow i rol graczy, dodatkowo impelemntacja przycisku zamiana rol)
 
 
 
