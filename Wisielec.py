@@ -18,7 +18,6 @@ class Ui_MainWindow(object):
         self.ui = Ui_FormHaslo()
         self.ui.setupUi(self.window)
         self.window.show()
-        self.ui_2 = Ui_MainWindow()
         MainWindow.hide()
 
     def closeMainWindow(self):
@@ -29,7 +28,7 @@ class Ui_MainWindow(object):
         MainWindow.resize(1127, 643)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.przycisk_Graj = QtWidgets.QPushButton(self.centralwidget)
+        self.przycisk_Graj = QtWidgets.QPushButton(self.centralwidget, clicked = lambda: self.openWindowWpiszHaslo())
         self.przycisk_Graj.setEnabled(True)
         self.przycisk_Graj.setGeometry(QtCore.QRect(460, 360, 221, 51))
         font = QtGui.QFont()
@@ -37,8 +36,7 @@ class Ui_MainWindow(object):
         self.przycisk_Graj.setFont(font)
         self.przycisk_Graj.setCursor(QtGui.QCursor(QtCore.Qt.ClosedHandCursor))
         self.przycisk_Graj.setObjectName("przycisk_Graj")
-        self.przycisk_Graj.clicked.connect(self.openWindowWpiszHaslo)
-        self.przycisk_Wyjdz = QtWidgets.QPushButton(self.centralwidget)
+        self.przycisk_Wyjdz = QtWidgets.QPushButton(self.centralwidget,clicked = lambda: self.closeMainWindow())
         self.przycisk_Wyjdz.setEnabled(True)
         self.przycisk_Wyjdz.setGeometry(QtCore.QRect(460, 480, 221, 51))
         font = QtGui.QFont()
