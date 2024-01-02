@@ -9,9 +9,21 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from WisielecWpiszHaslo import *
 
 class Ui_MainWindow(object):
+
+    def openWindowWpiszHaslo(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_FormHaslo()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        self.ui_2 = Ui_MainWindow()
+        MainWindow.hide()
+
+    def closeMainWindow(self):
+        sys.exit(app.exec_())
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1127, 643)
@@ -25,6 +37,7 @@ class Ui_MainWindow(object):
         self.przycisk_Graj.setFont(font)
         self.przycisk_Graj.setCursor(QtGui.QCursor(QtCore.Qt.ClosedHandCursor))
         self.przycisk_Graj.setObjectName("przycisk_Graj")
+        self.przycisk_Graj.clicked.connect(self.openWindowWpiszHaslo)
         self.przycisk_Wyjdz = QtWidgets.QPushButton(self.centralwidget)
         self.przycisk_Wyjdz.setEnabled(True)
         self.przycisk_Wyjdz.setGeometry(QtCore.QRect(460, 480, 221, 51))
@@ -33,6 +46,7 @@ class Ui_MainWindow(object):
         self.przycisk_Wyjdz.setFont(font)
         self.przycisk_Wyjdz.setCursor(QtGui.QCursor(QtCore.Qt.ClosedHandCursor))
         self.przycisk_Wyjdz.setObjectName("przycisk_Wyjdz")
+        self.przycisk_Wyjdz.clicked.connect(self.closeMainWindow)
         self.nick_gracza1 = QtWidgets.QLabel(self.centralwidget)
         self.nick_gracza1.setGeometry(QtCore.QRect(20, 0, 71, 41))
         font = QtGui.QFont()
