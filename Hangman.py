@@ -11,10 +11,8 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from Wisielec import *
 
-
 from WisielecGra import *
 from WisielecWpiszHaslo import *
-
 
 
 

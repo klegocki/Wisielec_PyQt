@@ -1,5 +1,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from WisielecWpiszHaslo import *
 
 class Gracz:
     def __init__(self,przegrane,wygrane,rola,pseudonim,istnieje):
@@ -8,11 +9,6 @@ class Gracz:
         self.rola=rola
         self.wygrane=wygrane
         self.istnieje=istnieje
-
-
-
-
-
 
 
 class Ui_MainWindow(object):
