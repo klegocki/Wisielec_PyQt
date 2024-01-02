@@ -9,9 +9,9 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
-
-
+from Wisielec import *
+from WisielecWpiszHaslo import *
+from WisielecGra import *
 
 
 
