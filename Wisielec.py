@@ -19,7 +19,7 @@ class Ui_MainWindow(object):
         self.ui.setupUi(self.window)
         self.window.show()
         MainWindow.hide()
-
+#halo
     def closeMainWindow(self):
         sys.exit(app.exec_())
 
