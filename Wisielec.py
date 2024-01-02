@@ -22,7 +22,7 @@ class Gracz:
 
 
 
-
+#halo
 
 class Ui_MainWindow(object):
     def __init__(self):
