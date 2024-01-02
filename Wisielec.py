@@ -23,6 +23,27 @@ class Ui_MainWindow(object):
     def closeMainWindow(self):
         sys.exit(app.exec_())
 
+
+class Gracz:
+    pseudonim = "null"
+    przegrane = 0
+    wygrane = 0
+    istnieje = 0
+    rola = False # false jezeli zgaduje, true jezeli daje haslo
+    def __init__(self,przegrane,wygrane,rola,pseudonim,istnieje):
+        self.pseudonim=pseudonim
+        self.przegrane=przegrane
+        self.rola=rola
+        self.wygrane=wygrane
+        self.istnieje=istnieje
+
+gracz1 = Gracz(0, 0, False,  "null",0)
+gracz2 = Gracz(0, 0, False, "null",0)
+
+
+
+class Ui_MainWindow(object):
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1127, 643)
@@ -45,6 +66,22 @@ class Ui_MainWindow(object):
         self.przycisk_Wyjdz.setCursor(QtGui.QCursor(QtCore.Qt.ClosedHandCursor))
         self.przycisk_Wyjdz.setObjectName("przycisk_Wyjdz")
         self.przycisk_Wyjdz.clicked.connect(self.closeMainWindow)
+        self.przycisk_gracz1_potwierdz = QtWidgets.QPushButton(self.centralwidget, clicked = lambda: self.utworzenie_gracza_1())
+        self.przycisk_gracz1_potwierdz.setEnabled(True)
+        self.przycisk_gracz1_potwierdz.setGeometry(QtCore.QRect(17, 100, 156, 40))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.przycisk_gracz1_potwierdz.setFont(font)
+        self.przycisk_gracz1_potwierdz.setCursor(QtGui.QCursor(QtCore.Qt.ClosedHandCursor))
+        self.przycisk_gracz1_potwierdz.setObjectName("przycisk_gracz1_potwierdz")
+        self.przycisk_gracz2_potwierdz = QtWidgets.QPushButton(self.centralwidget, clicked = lambda: self.utworzenie_gracza_2())
+        self.przycisk_gracz2_potwierdz.setEnabled(True)
+        self.przycisk_gracz2_potwierdz.setGeometry(QtCore.QRect(958, 100, 156, 40))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.przycisk_gracz2_potwierdz.setFont(font)
+        self.przycisk_gracz2_potwierdz.setCursor(QtGui.QCursor(QtCore.Qt.ClosedHandCursor))
+        self.przycisk_gracz2_potwierdz.setObjectName("przycisk_gracz2_potwierdz")
         self.nick_gracza1 = QtWidgets.QLabel(self.centralwidget)
         self.nick_gracza1.setGeometry(QtCore.QRect(20, 0, 71, 41))
         font = QtGui.QFont()
@@ -52,12 +89,12 @@ class Ui_MainWindow(object):
         self.nick_gracza1.setFont(font)
         self.nick_gracza1.setObjectName("nick_gracza1")
         self.nick_gracza2 = QtWidgets.QLabel(self.centralwidget)
-        self.nick_gracza2.setGeometry(QtCore.QRect(1050, 0, 71, 41))
+        self.nick_gracza2.setGeometry(QtCore.QRect(1040, 0, 71, 41))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.nick_gracza2.setFont(font)
         self.nick_gracza2.setObjectName("nick_gracza2")
-        self.przycisk_zamien_role = QtWidgets.QPushButton(self.centralwidget)
+        self.przycisk_zamien_role = QtWidgets.QPushButton(self.centralwidget, clicked = lambda: self.zamiana_rol(gracz1,gracz2))
         self.przycisk_zamien_role.setEnabled(True)
         self.przycisk_zamien_role.setGeometry(QtCore.QRect(460, 420, 221, 51))
         font = QtGui.QFont()
@@ -69,7 +106,7 @@ class Ui_MainWindow(object):
         self.input_gracz1.setGeometry(QtCore.QRect(20, 40, 151, 31))
         self.input_gracz1.setObjectName("input_gracz1")
         self.input_gracz2 = QtWidgets.QTextEdit(self.centralwidget)
-        self.input_gracz2.setGeometry(QtCore.QRect(970, 40, 151, 31))
+        self.input_gracz2.setGeometry(QtCore.QRect(960, 40, 151, 31))
         self.input_gracz2.setObjectName("input_gracz2")
         self.gracz1_rola = QtWidgets.QLabel(self.centralwidget)
         self.gracz1_rola.setEnabled(True)
@@ -115,12 +152,51 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "Wisielec"))
         self.przycisk_Graj.setText(_translate("MainWindow", "GRAJ"))
         self.przycisk_Wyjdz.setText(_translate("MainWindow", "WYJDZ"))
         self.nick_gracza1.setText(_translate("MainWindow", "Gracz 1"))
         self.nick_gracza2.setText(_translate("MainWindow", "Gracz 2"))
         self.przycisk_zamien_role.setText(_translate("MainWindow", "ZAMIEN ROLE"))
+        self.przycisk_gracz1_potwierdz.setText(_translate("MainWindow", "Potwierdz"))
+        self.przycisk_gracz2_potwierdz.setText(_translate("MainWindow", "Potwierdz"))
+
+
+
+
+    def utworzenie_gracza_1(self):
+        gracz1.rola=False
+        gracz1.pseudonim = self.input_gracz1.toPlainText()
+        gracz1.istnieje=1
+        self.nick_gracza1.setText(gracz1.pseudonim)
+
+
+
+        print("git")
+        return gracz1
+    def utworzenie_gracza_2(self):
+
+        gracz2.rola = True
+        gracz2.pseudonim = self.input_gracz2.toPlainText()
+        gracz2.istnieje = 1
+        self.nick_gracza2.setText(gracz2.pseudonim)
+
+
+
+        print("git")
+
+        return gracz2
+    def zamiana_rol(self,gracz1,gracz2):
+        if gracz1.istnieje==1 and gracz2.istnieje==1:
+            gracz_temp=gracz1
+            gracz1=gracz2
+            gracz2=gracz_temp
+            self.nick_gracza1.setText(gracz1.pseudonim)
+            self.nick_gracza2.setText(gracz2.pseudonim)
+            print(gracz1.rola)
+            print(gracz2.rola)
+
+
 
 
 if __name__ == "__main__":
