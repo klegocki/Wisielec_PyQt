@@ -12,8 +12,9 @@ class Gracz:
 
 
 class Ui_MainWindow(object):
+
     def openWindowWpiszHaslo(self):
-        self.window = QtWidgets.QMainWindow()
+        self.window = QtWidgets.QWidget()
         self.ui = Ui_FormHaslo()
         self.ui.setupUi(self.window)
         self.window.show()
@@ -24,6 +25,7 @@ class Ui_MainWindow(object):
     def __init__(self):
         self.gracz1 = Gracz(0, 0, False, "null", 0)
         self.gracz2 = Gracz(0, 0, False, "null", 0)
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1127, 643)

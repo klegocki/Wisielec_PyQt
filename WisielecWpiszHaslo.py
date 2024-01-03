@@ -12,21 +12,27 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from WisielecGra import *
 from PyQt5.QtWidgets import QMessageBox
 
+
 class Ui_FormHaslo(object):
 
-
     haslo = []
+
+
+
     def dodajLitere(self, litera):
         self.haslo.append(litera)
         self.labelHaslo.setText("".join(self.haslo))
 
+
     def zatwierdzHaslo(self):
         if(len(self.haslo) > 2 and len(self.haslo) < 13):
-            self.window = QtWidgets.QMainWindow()
+            self.window = QtWidgets.QWidget()
             self.ui = Ui_FormGra()
             self.ui.setupUi(self.window)
             self.window.show()
-            FormHaslo.hide()
+            current_window = QtWidgets.QApplication.activeWindow()
+            current_window.close()
+
         else:
             msg_box = QMessageBox()
             msg_box.setIcon(QMessageBox.Warning)
@@ -42,6 +48,7 @@ class Ui_FormHaslo(object):
         self.haslo.clear()
         self.labelHaslo.setText("".join(self.haslo))
 
+        
     def setupUi(self, FormHaslo):
         FormHaslo.setObjectName("FormHaslo")
         FormHaslo.resize(788, 459)
