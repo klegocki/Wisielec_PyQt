@@ -2,9 +2,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from WisielecWpiszHaslo import *
 
-
-
-
 class Gracz:
     def __init__(self,przegrane,wygrane,rola,pseudonim,istnieje):
         self.pseudonim=pseudonim
@@ -15,7 +12,6 @@ class Gracz:
 
 
 class Ui_MainWindow(object):
-
     def openWindowWpiszHaslo(self):
         self.window = QtWidgets.QMainWindow()
         self.ui = Ui_FormHaslo()
@@ -25,7 +21,6 @@ class Ui_MainWindow(object):
 
     def closeMainWindow(self):
         sys.exit(app.exec_())
-
     def __init__(self):
         self.gracz1 = Gracz(0, 0, False, "null", 0)
         self.gracz2 = Gracz(0, 0, False, "null", 0)
