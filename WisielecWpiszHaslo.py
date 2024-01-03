@@ -9,17 +9,37 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
+from WisielecGra import *
+from PyQt5.QtWidgets import QMessageBox
 
 class Ui_FormHaslo(object):
 
 
     haslo = []
-    tekst = ""
-
-
     def dodajLitere(self, litera):
         self.haslo.append(litera)
+        self.labelHaslo.setText("".join(self.haslo))
+
+    def zatwierdzHaslo(self):
+        if(len(self.haslo) > 2 and len(self.haslo) < 13):
+            self.window = QtWidgets.QMainWindow()
+            self.ui = Ui_FormGra()
+            self.ui.setupUi(self.window)
+            self.window.show()
+            FormHaslo.hide()
+        else:
+            msg_box = QMessageBox()
+            msg_box.setIcon(QMessageBox.Warning)
+            msg_box.setWindowTitle("Błąd")
+            msg_box.setText("Hasło musi zawierać od 3 do 12 liter.")
+            msg_box.setStandardButtons(QMessageBox.Ok)
+            msg_box.exec_()
+
+    def cofnijLitere(self):
+        self.haslo.pop()
+        self.labelHaslo.setText("".join(self.haslo))
+    def usunHaslo(self):
+        self.haslo.clear()
         self.labelHaslo.setText("".join(self.haslo))
 
     def setupUi(self, FormHaslo):
@@ -117,13 +137,13 @@ class Ui_FormHaslo(object):
         self.labelHaslo.setText("")
         self.labelHaslo.setAlignment(QtCore.Qt.AlignCenter)
         self.labelHaslo.setObjectName("labelHaslo")
-        self.Cofnijbutton = QtWidgets.QPushButton(FormHaslo)
+        self.Cofnijbutton = QtWidgets.QPushButton(FormHaslo, clicked = lambda: self.cofnijLitere())
         self.Cofnijbutton.setGeometry(QtCore.QRect(160, 250, 151, 41))
         self.Cofnijbutton.setObjectName("Cofnijbutton")
-        self.Usunbutton = QtWidgets.QPushButton(FormHaslo)
+        self.Usunbutton = QtWidgets.QPushButton(FormHaslo, clicked = lambda: self.usunHaslo())
         self.Usunbutton.setGeometry(QtCore.QRect(330, 250, 151, 41))
         self.Usunbutton.setObjectName("Usunbutton")
-        self.Zatwierdzbutton = QtWidgets.QPushButton(FormHaslo)
+        self.Zatwierdzbutton = QtWidgets.QPushButton(FormHaslo, clicked = lambda: self.zatwierdzHaslo())
         self.Zatwierdzbutton.setGeometry(QtCore.QRect(500, 250, 151, 41))
         self.Zatwierdzbutton.setObjectName("Zatwierdzbutton")
         self.label = QtWidgets.QLabel(FormHaslo)
