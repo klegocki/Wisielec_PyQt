@@ -17,6 +17,14 @@ class Ui_FormHaslo(object):
 
     haslo = []
 
+    def __init__(self, gracz1, gracz2):
+        self.gracz1 = gracz1
+        self.gracz2 = gracz2
+        print( self.gracz1.pseudonim)
+        print( self.gracz2.pseudonim)
+
+
+
 
 
     def dodajLitere(self, litera):
@@ -42,8 +50,24 @@ class Ui_FormHaslo(object):
             msg_box.exec_()
 
     def cofnijLitere(self):
-        self.haslo.pop()
-        self.labelHaslo.setText("".join(self.haslo))
+        if self.haslo:
+            self.haslo.pop()
+            self.labelHaslo.setText("".join(self.haslo))
+        else:
+            ''' '''
+            msg_box = QMessageBox()
+            msg_box.setIcon(QMessageBox.Warning)
+            msg_box.setStyleSheet((
+    "QMessageBox { background-color: white; }"
+    "QMessageBox QLabel { color: black; }"
+    "QMessageBox QPushButton { background-color: #4CAF50; color: white; }"
+    "QMessageBox QPushButton:hover { background-color: #45a049; }"
+))
+            msg_box.setWindowTitle("Błąd")
+            msg_box.setText("Wprowadź co najmniej jedną literę, aby móc cofnąć.")
+            msg_box.setStandardButtons(QMessageBox.Ok)
+            msg_box.exec_()
+
     def usunHaslo(self):
         self.haslo.clear()
         self.labelHaslo.setText("".join(self.haslo))
@@ -131,7 +155,7 @@ class Ui_FormHaslo(object):
         self.HCbutton.setGeometry(QtCore.QRect(280, 390, 35, 35))
         self.HCbutton.setObjectName("HCbutton")
         self.labelInstrukcja = QtWidgets.QLabel(FormHaslo)
-        self.labelInstrukcja.setGeometry(QtCore.QRect(220, 10, 171, 41))
+        self.labelInstrukcja.setGeometry(QtCore.QRect(255, 10, 210, 41))
         font = QtGui.QFont()
         font.setPointSize(24)
         self.labelInstrukcja.setFont(font)
@@ -154,7 +178,7 @@ class Ui_FormHaslo(object):
         self.Zatwierdzbutton.setGeometry(QtCore.QRect(500, 250, 151, 41))
         self.Zatwierdzbutton.setObjectName("Zatwierdzbutton")
         self.label = QtWidgets.QLabel(FormHaslo)
-        self.label.setGeometry(QtCore.QRect(410, 10, 181, 41))
+        self.label.setGeometry(QtCore.QRect(465, 10, 351, 41))
         font = QtGui.QFont()
         font.setPointSize(24)
         self.label.setFont(font)
@@ -192,11 +216,11 @@ class Ui_FormHaslo(object):
         self.HJbutton.setText(_translate("FormHaslo", "J"))
         self.HEbutton.setText(_translate("FormHaslo", "E"))
         self.HCbutton.setText(_translate("FormHaslo", "C"))
-        self.labelInstrukcja.setText(_translate("FormHaslo", "Wpisz haslo"))
+        self.labelInstrukcja.setText(_translate("FormHaslo", "Hasło wpisuje: "))
         self.Cofnijbutton.setText(_translate("FormHaslo", "COFNIJ"))
         self.Usunbutton.setText(_translate("FormHaslo", "USUN"))
         self.Zatwierdzbutton.setText(_translate("FormHaslo", "ZATWIERDZ"))
-        self.label.setText(_translate("FormHaslo", "Nick_Gracza"))
+        self.label.setText(_translate("FormHaslo", str(self.gracz2.pseudonim)))
 
 
 if __name__ == "__main__":

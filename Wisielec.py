@@ -1,6 +1,10 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from WisielecWpiszHaslo import *
+from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow, QPushButton, QTextEdit, QWidget, QMessageBox
+from PyQt5.QtGui import QPixmap, QImage, QPalette, QBrush
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import Qt
 
 class Gracz:
     def __init__(self,przegrane,wygrane,rola,pseudonim,istnieje):
@@ -16,7 +20,7 @@ class Ui_MainWindow(object):
     def openWindowWpiszHaslo(self):
         if self.gracz1.istnieje == 1 and self.gracz2.istnieje == 1:
             self.window = QtWidgets.QWidget()
-            self.ui = Ui_FormHaslo()
+            self.ui = Ui_FormHaslo(self.gracz1, self.gracz2)
             self.ui.setupUi(self.window)
             self.window.show()
             MainWindow.hide()
@@ -72,17 +76,20 @@ class Ui_MainWindow(object):
         self.przycisk_gracz2_potwierdz.setCursor(QtGui.QCursor(QtCore.Qt.ClosedHandCursor))
         self.przycisk_gracz2_potwierdz.setObjectName("przycisk_gracz2_potwierdz")
         self.nick_gracza1 = QtWidgets.QLabel(self.centralwidget)
-        self.nick_gracza1.setGeometry(QtCore.QRect(20, 0, 71, 41))
+        self.nick_gracza1.setGeometry(QtCore.QRect(20, 0, 200, 41))
+        self.nick_gracza1.setStyleSheet("color: white;")
         font = QtGui.QFont()
         font.setPointSize(16)
         self.nick_gracza1.setFont(font)
         self.nick_gracza1.setObjectName("nick_gracza1")
         self.nick_gracza2 = QtWidgets.QLabel(self.centralwidget)
-        self.nick_gracza2.setGeometry(QtCore.QRect(1040, 0, 71, 41))
+        self.nick_gracza2.setGeometry(QtCore.QRect(960, 0, 151, 41))
+        self.nick_gracza2.setStyleSheet("color: white;")
         font = QtGui.QFont()
         font.setPointSize(16)
         self.nick_gracza2.setFont(font)
         self.nick_gracza2.setObjectName("nick_gracza2")
+
         self.przycisk_zamien_role = QtWidgets.QPushButton(self.centralwidget, clicked = lambda: self.zamiana_rol())
         self.przycisk_zamien_role.setEnabled(True)
         self.przycisk_zamien_role.setGeometry(QtCore.QRect(460, 420, 221, 51))
@@ -136,6 +143,12 @@ class Ui_MainWindow(object):
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
+        palette = QPalette()
+        background_image = QImage("C:\GUI\zdjęcie.png")
+        palette.setBrush(QPalette.Window, QBrush(background_image))
+        MainWindow.setPalette(palette)
+
+
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -144,8 +157,8 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Wisielec"))
         self.przycisk_Graj.setText(_translate("MainWindow", "GRAJ"))
         self.przycisk_Wyjdz.setText(_translate("MainWindow", "WYJDZ"))
-        self.nick_gracza1.setText(_translate("MainWindow", "Gracz 1"))
-        self.nick_gracza2.setText(_translate("MainWindow", "Gracz 2"))
+        self.nick_gracza1.setText(_translate("MainWindow", "Zgadujący"))
+        self.nick_gracza2.setText(_translate("MainWindow", "Wpisujący"))
         self.przycisk_zamien_role.setText(_translate("MainWindow", "ZAMIEN ROLE"))
         self.przycisk_gracz1_potwierdz.setText(_translate("MainWindow", "Potwierdz"))
         self.przycisk_gracz2_potwierdz.setText(_translate("MainWindow", "Potwierdz"))

@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9fb73c3c-838d-4d1f-a413-585b5fdd09be" name="Changes" comment="Przełączanie pomiędzy oknami wyboru hasła i wyłączeniem apki." />
+    <list default="true" id="9fb73c3c-838d-4d1f-a413-585b5fdd09be" name="Changes" comment="Przełączanie pomiędzy oknami wyboru hasła i wyłączeniem apki.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wisielec.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wisielec.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WisielecWpiszHaslo.py" beforeDir="false" afterPath="$PROJECT_DIR$/WisielecWpiszHaslo.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
