@@ -12,6 +12,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_FormGra(object):
+
+
+    def __init__(self, haslo):
+        self.haslo = haslo
+        print(self.haslo)
+
+
     def setupUi(self, FormGra):
         FormGra.setObjectName("FormGra")
         FormGra.resize(1127, 621)
