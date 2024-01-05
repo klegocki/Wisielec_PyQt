@@ -27,7 +27,7 @@ class Ui_FormHaslo(object):
     def zatwierdzHaslo(self):
         if(len(self.haslo) > 2 and len(self.haslo) < 13):
             self.window = QtWidgets.QWidget()
-            self.ui = Ui_FormGra()
+            self.ui = Ui_FormGra(self.haslo)
             self.ui.setupUi(self.window)
             self.window.show()
             current_window = QtWidgets.QApplication.activeWindow()

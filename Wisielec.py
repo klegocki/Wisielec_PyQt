@@ -14,11 +14,19 @@ class Gracz:
 class Ui_MainWindow(object):
 
     def openWindowWpiszHaslo(self):
-        self.window = QtWidgets.QWidget()
-        self.ui = Ui_FormHaslo()
-        self.ui.setupUi(self.window)
-        self.window.show()
-        MainWindow.hide()
+        if self.gracz1.istnieje == 1 and self.gracz2.istnieje == 1:
+            self.window = QtWidgets.QWidget()
+            self.ui = Ui_FormHaslo()
+            self.ui.setupUi(self.window)
+            self.window.show()
+            MainWindow.hide()
+        else:
+            msg_box = QMessageBox()
+            msg_box.setIcon(QMessageBox.Warning)
+            msg_box.setWindowTitle("Błąd")
+            msg_box.setText("Nie utworzono graczy.")
+            msg_box.setStandardButtons(QMessageBox.Ok)
+            msg_box.exec_()
 
     def closeMainWindow(self):
         sys.exit(app.exec_())
