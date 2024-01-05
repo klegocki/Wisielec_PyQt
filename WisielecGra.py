@@ -9,15 +9,77 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
+from Wisielec import *
 
 
 class Ui_FormGra(object):
-
+    licznik_bledow = 0
+    haslo_zgadnij = []
 
     def __init__(self, haslo):
         self.haslo = haslo
         print(self.haslo)
+        self.haslo_zgadnij = ['_' for _ in range(len(self.haslo))]
+        print(self.haslo_zgadnij)
+        licznik_bledow = 0
 
+    def dodajLitere(self, litera):
+        print(litera)
+        koniec_gry = False
+        if (koniec_gry == False):
+            zgadles = False
+            koniec_gry = True
+            for j in range(len(self.haslo)):
+                if (self.haslo[j] == litera):
+                    zgadles = True
+                    self.haslo_zgadnij[j] = self.haslo[j]
+            for x in self.haslo_zgadnij:
+                print(x)
+            for y in range(len(self.haslo_zgadnij)):
+                if self.haslo_zgadnij[y] == "":
+                    koniec_gry = False
+            if (zgadles == False):
+                self.licznik_bledow += 1
+                if self.licznik_bledow == 1:
+                    self.linia1.show()
+                if self.licznik_bledow == 2:
+                    self.line2.show()
+                if self.licznik_bledow == 3:
+                    self.line3.show()
+                if self.licznik_bledow == 4:
+                    self.line4.show()
+                if self.licznik_bledow == 5:
+                    self.line5.show()
+                    self.label.show()
+                if self.licznik_bledow == 6:
+                    self.line51.show()
+                    self.line52.show()
+                    self.line53.show()
+                if self.licznik_bledow == 7:
+                    self.line6.show()
+                if self.licznik_bledow == 8:
+                    self.line7.show()
+                if self.licznik_bledow == 9:
+                    self.line8.show()
+                if self.licznik_bledow == 10:
+                    self.line8_2.show()
+
+            if (self.haslo == self.haslo_zgadnij):
+                msg_box = QMessageBox()
+                msg_box.setIcon(QMessageBox.Warning)
+                msg_box.setWindowTitle("Wynik")
+                msg_box.setText("Zgadujący wygrał.")
+                msg_box.setStandardButtons(QMessageBox.Ok)
+                msg_box.exec_()
+            if (self.licznik_bledow == 10):
+                msg_box2 = QMessageBox()
+                msg_box2.setIcon(QMessageBox.Warning)
+                msg_box2.setWindowTitle("Wynik")
+                cale_haslo = ''.join(self.haslo)
+                msg_box2.setText("Zgadujący przegrał. Hasło to: " + cale_haslo)
+                msg_box2.setStandardButtons(QMessageBox.Ok)
+                msg_box2.exec_()
 
     def setupUi(self, FormGra):
         FormGra.setObjectName("FormGra")
@@ -36,24 +98,28 @@ class Ui_FormGra(object):
         self.linia1.setFrameShape(QtWidgets.QFrame.HLine)
         self.linia1.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.linia1.setObjectName("linia1")
+        self.linia1.hide()
         self.line2 = QtWidgets.QFrame(FormGra)
         self.line2.setGeometry(QtCore.QRect(700, 150, 20, 351))
         self.line2.setLineWidth(5)
         self.line2.setFrameShape(QtWidgets.QFrame.VLine)
         self.line2.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line2.setObjectName("line2")
+        self.line2.hide()
         self.line3 = QtWidgets.QFrame(FormGra)
         self.line3.setGeometry(QtCore.QRect(660, 140, 351, 16))
         self.line3.setLineWidth(5)
         self.line3.setFrameShape(QtWidgets.QFrame.HLine)
         self.line3.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line3.setObjectName("line3")
+        self.line3.hide()
         self.line4 = QtWidgets.QFrame(FormGra)
         self.line4.setGeometry(QtCore.QRect(890, 150, 16, 61))
         self.line4.setLineWidth(5)
         self.line4.setFrameShape(QtWidgets.QFrame.VLine)
         self.line4.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.line4.setObjectName("line4")
+        self.line4.hide()
         self.line5 = QtWidgets.QDial(FormGra)
         self.line5.setGeometry(QtCore.QRect(850, 200, 91, 71))
         self.line5.setMinimum(0)
@@ -62,6 +128,7 @@ class Ui_FormGra(object):
         self.line5.setSliderPosition(360)
         self.line5.setTracking(False)
         self.line5.setObjectName("line5")
+        self.line5.hide()
         self.line8 = QtWidgets.QLabel(FormGra)
         self.line8.setGeometry(QtCore.QRect(873, 360, 31, 61))
         font = QtGui.QFont()
@@ -70,14 +137,17 @@ class Ui_FormGra(object):
         font.setWeight(75)
         self.line8.setFont(font)
         self.line8.setObjectName("line8")
+        self.line8.hide()
         self.line6 = QtWidgets.QLabel(FormGra)
         self.line6.setGeometry(QtCore.QRect(872, 270, 31, 61))
+
         font = QtGui.QFont()
         font.setPointSize(36)
         font.setBold(True)
         font.setWeight(75)
         self.line6.setFont(font)
         self.line6.setObjectName("line6")
+        self.line6.hide()
         self.line7 = QtWidgets.QLabel(FormGra)
         self.line7.setGeometry(QtCore.QRect(891, 270, 31, 61))
         font = QtGui.QFont()
@@ -86,6 +156,7 @@ class Ui_FormGra(object):
         font.setWeight(75)
         self.line7.setFont(font)
         self.line7.setObjectName("line7")
+        self.line7.hide()
         self.line8_2 = QtWidgets.QLabel(FormGra)
         self.line8_2.setGeometry(QtCore.QRect(890, 360, 31, 61))
         font = QtGui.QFont()
@@ -94,6 +165,7 @@ class Ui_FormGra(object):
         font.setWeight(75)
         self.line8_2.setFont(font)
         self.line8_2.setObjectName("line8_2")
+        self.line8_2.hide()
         self.line53 = QtWidgets.QLabel(FormGra)
         self.line53.setGeometry(QtCore.QRect(880, 320, 31, 61))
         font = QtGui.QFont()
@@ -102,6 +174,7 @@ class Ui_FormGra(object):
         font.setWeight(75)
         self.line53.setFont(font)
         self.line53.setObjectName("line53")
+        self.line53.hide()
         self.line52 = QtWidgets.QLabel(FormGra)
         self.line52.setGeometry(QtCore.QRect(880, 290, 31, 61))
         font = QtGui.QFont()
@@ -110,6 +183,7 @@ class Ui_FormGra(object):
         font.setWeight(75)
         self.line52.setFont(font)
         self.line52.setObjectName("line52")
+        self.line52.hide()
         self.line51 = QtWidgets.QLabel(FormGra)
         self.line51.setGeometry(QtCore.QRect(880, 250, 31, 61))
         font = QtGui.QFont()
@@ -118,85 +192,87 @@ class Ui_FormGra(object):
         font.setWeight(75)
         self.line51.setFont(font)
         self.line51.setObjectName("line51")
+        self.line51.hide()
         self.label = QtWidgets.QLabel(FormGra)
         self.label.setGeometry(QtCore.QRect(885, 220, 41, 16))
         self.label.setObjectName("label")
-        self.Qbutton = QtWidgets.QPushButton(FormGra)
+        self.label.hide()
+        self.Qbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("Q"))
         self.Qbutton.setGeometry(QtCore.QRect(100, 310, 35, 35))
         self.Qbutton.setObjectName("Qbutton")
-        self.Wbutton = QtWidgets.QPushButton(FormGra)
+        self.Wbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("W"))
         self.Wbutton.setGeometry(QtCore.QRect(150, 310, 35, 35))
         self.Wbutton.setObjectName("Wbutton")
-        self.Ebutton = QtWidgets.QPushButton(FormGra)
+        self.Ebutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("E"))
         self.Ebutton.setGeometry(QtCore.QRect(200, 310, 35, 35))
         self.Ebutton.setObjectName("Ebutton")
-        self.Rbutton = QtWidgets.QPushButton(FormGra)
+        self.Rbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("R"))
         self.Rbutton.setGeometry(QtCore.QRect(250, 310, 35, 35))
         self.Rbutton.setObjectName("Rbutton")
-        self.Tbutton = QtWidgets.QPushButton(FormGra)
+        self.Tbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("T"))
         self.Tbutton.setGeometry(QtCore.QRect(300, 310, 35, 35))
         self.Tbutton.setObjectName("Tbutton")
-        self.Pbutton = QtWidgets.QPushButton(FormGra)
+        self.Pbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("P"))
         self.Pbutton.setGeometry(QtCore.QRect(550, 310, 35, 35))
         self.Pbutton.setObjectName("Pbutton")
-        self.Ubutton = QtWidgets.QPushButton(FormGra)
+        self.Ubutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("U"))
         self.Ubutton.setGeometry(QtCore.QRect(400, 310, 35, 35))
         self.Ubutton.setObjectName("Ubutton")
-        self.Ibutton = QtWidgets.QPushButton(FormGra)
+        self.Ibutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("I"))
         self.Ibutton.setGeometry(QtCore.QRect(450, 310, 35, 35))
         self.Ibutton.setObjectName("Ibutton")
-        self.Obutton = QtWidgets.QPushButton(FormGra)
+        self.Obutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("O"))
         self.Obutton.setGeometry(QtCore.QRect(500, 310, 35, 35))
         self.Obutton.setObjectName("Obutton")
-        self.Ybutton = QtWidgets.QPushButton(FormGra)
+        self.Ybutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("Y"))
         self.Ybutton.setGeometry(QtCore.QRect(350, 310, 35, 35))
         self.Ybutton.setObjectName("Ybutton")
-        self.Gbutton = QtWidgets.QPushButton(FormGra)
+        self.Gbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("G"))
         self.Gbutton.setGeometry(QtCore.QRect(310, 350, 35, 35))
         self.Gbutton.setObjectName("Gbutton")
-        self.Sbutton = QtWidgets.QPushButton(FormGra)
+        self.Sbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("S"))
         self.Sbutton.setGeometry(QtCore.QRect(160, 350, 35, 35))
         self.Sbutton.setObjectName("Sbutton")
-        self.Dbutton = QtWidgets.QPushButton(FormGra)
+        self.Dbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("D"))
         self.Dbutton.setGeometry(QtCore.QRect(210, 350, 35, 35))
         self.Dbutton.setObjectName("Dbutton")
-        self.Hbutton = QtWidgets.QPushButton(FormGra)
+        self.Hbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("H"))
         self.Hbutton.setGeometry(QtCore.QRect(360, 350, 35, 35))
         self.Hbutton.setObjectName("Hbutton")
-        self.Jbutton = QtWidgets.QPushButton(FormGra)
+        self.Jbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("J"))
         self.Jbutton.setGeometry(QtCore.QRect(410, 350, 35, 35))
         self.Jbutton.setObjectName("Jbutton")
-        self.Kbutton = QtWidgets.QPushButton(FormGra)
+        self.Kbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("K"))
         self.Kbutton.setGeometry(QtCore.QRect(460, 350, 35, 35))
         self.Kbutton.setObjectName("Kbutton")
-        self.Fbutton = QtWidgets.QPushButton(FormGra)
+        self.Fbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("F"))
         self.Fbutton.setGeometry(QtCore.QRect(260, 350, 35, 35))
         self.Fbutton.setObjectName("Fbutton")
-        self.Lbutton = QtWidgets.QPushButton(FormGra)
+        self.Lbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("L"))
         self.Lbutton.setGeometry(QtCore.QRect(510, 350, 35, 35))
         self.Lbutton.setObjectName("Lbutton")
-        self.Abutton = QtWidgets.QPushButton(FormGra)
+        self.Abutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("A"))
         self.Abutton.setGeometry(QtCore.QRect(110, 350, 35, 35))
         self.Abutton.setObjectName("Abutton")
-        self.M = QtWidgets.QPushButton(FormGra)
+        self.M = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("M"))
         self.M.setGeometry(QtCore.QRect(420, 390, 35, 35))
         self.M.setObjectName("M")
-        self.Zbutton = QtWidgets.QPushButton(FormGra)
+        self.Zbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("Z"))
         self.Zbutton.setGeometry(QtCore.QRect(120, 390, 35, 35))
         self.Zbutton.setObjectName("Zbutton")
-        self.Xbutton = QtWidgets.QPushButton(FormGra)
+        self.Xbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("X"))
         self.Xbutton.setGeometry(QtCore.QRect(170, 390, 35, 35))
         self.Xbutton.setObjectName("Xbutton")
-        self.Cbutton = QtWidgets.QPushButton(FormGra)
+        self.Cbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("C"))
         self.Cbutton.setGeometry(QtCore.QRect(220, 390, 35, 35))
         self.Cbutton.setObjectName("Cbutton")
-        self.Vbutton = QtWidgets.QPushButton(FormGra)
+        self.Vbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("V"))
         self.Vbutton.setGeometry(QtCore.QRect(270, 390, 35, 35))
         self.Vbutton.setObjectName("Vbutton")
-        self.Nbutton = QtWidgets.QPushButton(FormGra)
+        self.Nbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("N"))
         self.Nbutton.setGeometry(QtCore.QRect(370, 390, 35, 35))
         self.Nbutton.setObjectName("Nbutton")
-        self.Bbutton = QtWidgets.QPushButton(FormGra)
+        self.Bbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("B"))
         self.Bbutton.setGeometry(QtCore.QRect(320, 390, 35, 35))
         self.Bbutton.setObjectName("Bbutton")
 
