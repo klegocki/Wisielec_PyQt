@@ -144,7 +144,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         palette = QPalette()
-        background_image = QImage("C:\GUI\zdjęcie.png")
+        background_image = QImage(r"C:\Users\karna\Desktop\wisielec\zdjecie.png")
         palette.setBrush(QPalette.Window, QBrush(background_image))
         MainWindow.setPalette(palette)
 
