@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9fb73c3c-838d-4d1f-a413-585b5fdd09be" name="Changes" comment="Przełączanie pomiędzy oknami wyboru hasła i wyłączeniem apki.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WisielecGra.py" beforeDir="false" afterPath="$PROJECT_DIR$/WisielecGra.py" afterDir="false" />
-    </list>
+    <list default="true" id="9fb73c3c-838d-4d1f-a413-585b5fdd09be" name="Changes" comment="Przełączanie pomiędzy oknami wyboru hasła i wyłączeniem apki." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,7 +25,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Kacper",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/Stanisław/Desktop/Hangman/Wisielec_PyQt"
   }
@@ -38,7 +35,7 @@
       <recent name="C:\Users\Stanisław\Desktop\Hangman\Wisielec_PyQt" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.WisielecWpiszHaslo">
+  <component name="RunManager" selected="Python.Wisielec">
     <configuration name="Wisielec" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Wisielec_PyQt" />
       <option name="INTERPRETER_OPTIONS" value="" />
