@@ -21,6 +21,8 @@ class Ui_FormHaslo(object):
         self.gracz2 = gracz2
         print(self.gracz1.pseudonim)
         print(self.gracz2.pseudonim)
+        print(self.gracz1.rola)
+        print(self.gracz2.rola)
 
     def dodajLitere(self, litera):
         self.haslo.append(litera)
@@ -148,7 +150,7 @@ class Ui_FormHaslo(object):
         self.HCbutton.setGeometry(QtCore.QRect(280, 390, 35, 35))
         self.HCbutton.setObjectName("HCbutton")
         self.labelInstrukcja = QtWidgets.QLabel(FormHaslo)
-        self.labelInstrukcja.setGeometry(QtCore.QRect(255, 10, 210, 41))
+        self.labelInstrukcja.setGeometry(QtCore.QRect(255, 10, 270, 90))
         font = QtGui.QFont()
         font.setPointSize(24)
         self.labelInstrukcja.setFont(font)
@@ -171,11 +173,15 @@ class Ui_FormHaslo(object):
         self.Zatwierdzbutton.setGeometry(QtCore.QRect(500, 250, 151, 41))
         self.Zatwierdzbutton.setObjectName("Zatwierdzbutton")
         self.label = QtWidgets.QLabel(FormHaslo)
-        self.label.setGeometry(QtCore.QRect(465, 10, 351, 41))
+        self.label.setGeometry(QtCore.QRect(520, 10, 500, 90))
         font = QtGui.QFont()
         font.setPointSize(24)
         self.label.setFont(font)
         self.label.setObjectName("label")
+        if (self.gracz1.rola == False  and self.gracz2.rola == True):
+            self.label.setText(str(self.gracz1.pseudonim))
+        else:
+            self.label.setText(str(self.gracz2.pseudonim))
 
         self.retranslateUi(FormHaslo)
         QtCore.QMetaObject.connectSlotsByName(FormHaslo)
@@ -213,7 +219,10 @@ class Ui_FormHaslo(object):
         self.Cofnijbutton.setText(_translate("FormHaslo", "COFNIJ"))
         self.Usunbutton.setText(_translate("FormHaslo", "USUN"))
         self.Zatwierdzbutton.setText(_translate("FormHaslo", "ZATWIERDZ"))
-        self.label.setText(_translate("FormHaslo", str(self.gracz2.pseudonim)))
+
+
+
+
 
 
 if __name__ == "__main__":

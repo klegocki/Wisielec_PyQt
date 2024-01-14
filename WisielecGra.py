@@ -35,11 +35,13 @@ class Ui_FormGra(object):
             for j in range(len(self.haslo)):
                 if (self.haslo[j] == litera):
                     zgadles = True
+                    self.usunLitere(litera)
                     self.haslo_zgadnij[j] = self.haslo[j]
             for x in self.haslo_zgadnij:
                 print(x)
 
             if (zgadles == False):
+                self.usunLitere(litera)
                 self.licznik_bledow += 1
                 if self.licznik_bledow == 1:
                     self.linia1.show()
@@ -70,11 +72,11 @@ class Ui_FormGra(object):
                 msg_box.setIcon(QMessageBox.Warning)
                 msg_box.setWindowTitle("Wynik")
                 msg_box.setText("Zgadujący wygrał.")
+                self.usunLitere(litera)
                 self.gracz2.wygrane = self.gracz2.wygrane + 1
                 self.gracz1.przegrane = self.gracz1.przegrane + 1
                 msg_box.setStandardButtons(QMessageBox.Ok)
                 msg_box.exec_()
-                print("cos")
                 self.window = QtWidgets.QMainWindow()
                 self.ui = Wisielec.Ui_MainWindow(self.gracz1, self.gracz2)
                 self.ui.setupUi(self.window)
@@ -91,10 +93,16 @@ class Ui_FormGra(object):
                 msg_box2.setWindowTitle("Wynik")
                 cale_haslo = ''.join(self.haslo)
                 msg_box2.setText("Zgadujący przegrał. Hasło to: " + cale_haslo)
+                self.usunLitere(litera)
                 self.gracz2.przegrane = self.gracz2.przegrane + 1
                 self.gracz1.wygrane = self.gracz1.wygrane + 1
                 msg_box2.setStandardButtons(QMessageBox.Ok)
                 msg_box2.exec_()
+
+    def usunLitere(self, litera):
+        button_name = f"{litera}button"
+        button = getattr(self, button_name)
+        button.hide()
 
     def setupUi(self, FormGra):
         FormGra.setObjectName("FormGra")
@@ -269,9 +277,9 @@ class Ui_FormGra(object):
         self.Abutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("A"))
         self.Abutton.setGeometry(QtCore.QRect(110, 350, 35, 35))
         self.Abutton.setObjectName("Abutton")
-        self.M = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("M"))
-        self.M.setGeometry(QtCore.QRect(420, 390, 35, 35))
-        self.M.setObjectName("M")
+        self.Mbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("M"))
+        self.Mbutton.setGeometry(QtCore.QRect(420, 390, 35, 35))
+        self.Mbutton.setObjectName("Mbutton")
         self.Zbutton = QtWidgets.QPushButton(FormGra, clicked = lambda: self.dodajLitere("Z"))
         self.Zbutton.setGeometry(QtCore.QRect(120, 390, 35, 35))
         self.Zbutton.setObjectName("Zbutton")
@@ -324,7 +332,7 @@ class Ui_FormGra(object):
         self.Fbutton.setText(_translate("FormGra", "F"))
         self.Lbutton.setText(_translate("FormGra", "L"))
         self.Abutton.setText(_translate("FormGra", "A"))
-        self.M.setText(_translate("FormGra", "M"))
+        self.Mbutton.setText(_translate("FormGra", "M"))
         self.Zbutton.setText(_translate("FormGra", "Z"))
         self.Xbutton.setText(_translate("FormGra", "X"))
         self.Cbutton.setText(_translate("FormGra", "C"))
