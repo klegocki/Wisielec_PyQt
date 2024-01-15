@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow, QPushButton, QTex
 from PyQt5.QtGui import QPixmap, QImage, QPalette, QBrush
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
-
+import WisielecWybierzHaslo
 
 class Gracz:
     def __init__(self,przegrane,wygrane,rola,pseudonim,istnieje):
@@ -22,7 +22,7 @@ class Ui_MainWindow(object):
         try:
             if self.gracz1.istnieje == 1 and self.gracz2.istnieje == 1:
                 self.window = QWidget()
-                self.ui = WisielecWpiszHaslo.Ui_FormHaslo(self.gracz1, self.gracz2)
+                self.ui = WisielecWybierzHaslo.Ui_Form(self.gracz1, self.gracz2)
                 self.ui.setupUi(self.window)
                 self.window.show()
                 current_window = QtWidgets.QApplication.activeWindow()
@@ -265,7 +265,7 @@ class Ui_MainWindow(object):
     def utworzenie_gracza_1(self):
         sprawdzCzywpisanoNick = self.input_gracz1.toPlainText()
         if(sprawdzCzywpisanoNick != ""):
-            self.gracz1 = Gracz(0, 0, False, str(sprawdzCzywpisanoNick), 0)
+            self.gracz1 = Gracz(0, 0, False, str(sprawdzCzywpisanoNick), 1)
             self.gracz1.rola = False
             self.gracz1.pseudonim = self.input_gracz1.toPlainText()
             self.gracz1.istnieje = 1
@@ -296,7 +296,7 @@ class Ui_MainWindow(object):
     def utworzenie_gracza_2(self):
         sprawdzCzywpisanoNick = self.input_gracz2.toPlainText()
         if (sprawdzCzywpisanoNick != ""):
-            self.gracz2 = Gracz(0, 0, False, str(sprawdzCzywpisanoNick), 0)
+            self.gracz2 = Gracz(0, 0, False, str(sprawdzCzywpisanoNick), 1)
             self.gracz2.rola = True
             self.gracz2.pseudonim = self.input_gracz2.toPlainText()
             self.gracz2.istnieje = 1
