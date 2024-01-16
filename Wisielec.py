@@ -264,7 +264,7 @@ class Ui_MainWindow(object):
 
     def utworzenie_gracza_1(self):
         sprawdzCzywpisanoNick = self.input_gracz1.toPlainText()
-        if(sprawdzCzywpisanoNick != ""):
+        if(sprawdzCzywpisanoNick.strip() != ""):
             self.gracz1 = Gracz(0, 0, False, str(sprawdzCzywpisanoNick), 1)
             self.gracz1.rola = False
             self.gracz1.pseudonim = self.input_gracz1.toPlainText()
@@ -295,7 +295,7 @@ class Ui_MainWindow(object):
 
     def utworzenie_gracza_2(self):
         sprawdzCzywpisanoNick = self.input_gracz2.toPlainText()
-        if (sprawdzCzywpisanoNick != ""):
+        if (sprawdzCzywpisanoNick.strip() != ""):
             self.gracz2 = Gracz(0, 0, False, str(sprawdzCzywpisanoNick), 1)
             self.gracz2.rola = True
             self.gracz2.pseudonim = self.input_gracz2.toPlainText()

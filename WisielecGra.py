@@ -73,8 +73,18 @@ class Ui_FormGra(object):
                 msg_box.setWindowTitle("Wynik")
                 msg_box.setText("Zgadujący wygrał.")
                 self.usunLitere(litera)
-                self.gracz2.wygrane = self.gracz2.wygrane + 1
-                self.gracz1.przegrane = self.gracz1.przegrane + 1
+                if(self.gracz1.rola == True):
+                    self.gracz2.przegrane = self.gracz2.przegrane + 1
+                    self.gracz1.wygrane = self.gracz1.wygrane + 1
+                else:
+                    self.gracz1.przegrane = self.gracz2.przegrane + 1
+                    self.gracz2.wygrane = self.gracz1.wygrane + 1
+                wynik_gracza_1 = "Pseudonim: "+str(self.gracz1.pseudonim)+"\nWygrane: "+str(self.gracz1.wygrane)+"\nPrzegrane: "+str(self.gracz1.przegrane)
+                wynik_gracza_2 = "Pseudonim: " + str(self.gracz2.pseudonim) + "\nWygrane: " + str(self.gracz2.wygrane) + "\nPrzegrane: " + str(self.gracz2.przegrane)
+                with open(str(self.gracz1.pseudonim)+".txt","w") as file:
+                    file.write(wynik_gracza_1)
+                with open(str(self.gracz2.pseudonim)+".txt","w") as file2:
+                    file2.write(wynik_gracza_2)
                 msg_box.setStandardButtons(QMessageBox.Ok)
                 msg_box.exec_()
                 self.window = QtWidgets.QMainWindow()
@@ -94,15 +104,25 @@ class Ui_FormGra(object):
                 cale_haslo = ''.join(self.haslo)
                 msg_box2.setText("Zgadujący przegrał. Hasło to: " + cale_haslo)
                 self.usunLitere(litera)
-                self.gracz2.przegrane = self.gracz2.przegrane + 1
-                self.gracz1.wygrane = self.gracz1.wygrane + 1
+                if(self.gracz1.rola == True):
+                    self.gracz1.przegrane = self.gracz2.przegrane + 1
+                    self.gracz2.wygrane = self.gracz1.wygrane + 1
+                else:
+                    self.gracz2.przegrane = self.gracz2.przegrane + 1
+                    self.gracz1.wygrane = self.gracz1.wygrane + 1
                 msg_box2.setStandardButtons(QMessageBox.Ok)
                 msg_box2.exec_()
+                self.window = QtWidgets.QMainWindow()
+                self.ui = Wisielec.Ui_MainWindow(self.gracz1, self.gracz2)
+                self.ui.setupUi(self.window)
+                self.window.show()
+                current_window = QtWidgets.QApplication.activeWindow()
+                current_window.close()
 
     def usunLitere(self, litera):
         button_name = f"{litera}button"
         button = getattr(self, button_name)
-        button.hide()
+        button = QtWidgets.QPushButton()
 
     def setupUi(self, FormGra):
         FormGra.setObjectName("FormGra")
