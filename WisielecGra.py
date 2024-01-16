@@ -10,7 +10,7 @@
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
-
+import os
 import Wisielec
 
 class Ui_FormGra(object):
@@ -18,6 +18,7 @@ class Ui_FormGra(object):
     GlowneOknoo = 0
     haslo_zgadnij = []
     obiekt_haslo = []
+    uzyte_litery = []
     def __init__(self,haslo,gracz1,gracz2):
         self.gracz1 = gracz1
         self.gracz2 = gracz2
@@ -29,103 +30,123 @@ class Ui_FormGra(object):
     def dodajLitere(self, litera):
 
         print(litera)
-        if (self.licznik_bledow != 10):
-            zgadles = False
-            for j in range(len(self.haslo)):
-                if (self.haslo[j] == litera):
 
-                    zgadles = True
-                    self.obiekt_haslo[j].show()
-                    self.obiekt_haslo[j].setText(self.haslo[j])
-                    self.usunLitere(litera)
-                    self.haslo_zgadnij[j] = self.haslo[j]
-            for x in self.haslo_zgadnij:
-                print(x)
+        if self.usunLitere(litera):
+            self.uzyte_litery.append(litera)
+            if (self.licznik_bledow != 10):
+                zgadles = False
+                for j in range(len(self.haslo)):
+                    if (self.haslo[j] == litera):
 
-            if (zgadles == False):
-                self.usunLitere(litera)
-                self.licznik_bledow += 1
-                if self.licznik_bledow == 1:
-                    self.linia1.show()
-                if self.licznik_bledow == 2:
-                    self.line2.show()
-                if self.licznik_bledow == 3:
-                    self.line3.show()
-                if self.licznik_bledow == 4:
-                    self.line4.show()
-                if self.licznik_bledow == 5:
-                    self.line5.show()
-                    self.label.show()
-                if self.licznik_bledow == 6:
-                    self.line51.show()
-                    self.line52.show()
-                    self.line53.show()
-                if self.licznik_bledow == 7:
-                    self.line6.show()
-                if self.licznik_bledow == 8:
-                    self.line7.show()
-                if self.licznik_bledow == 9:
-                    self.line8.show()
-                if self.licznik_bledow == 10:
-                    self.line8_2.show()
+                        zgadles = True
+                        self.obiekt_haslo[j].show()
+                        self.obiekt_haslo[j].setText(self.haslo[j])
+                        self.haslo_zgadnij[j] = self.haslo[j]
+                #for x in self.haslo_zgadnij:
+                #    print(x)
 
-            if (self.haslo == self.haslo_zgadnij):
-                self.licznik_bledow = 0
-                msg_box = QMessageBox()
-                msg_box.setIcon(QMessageBox.Warning)
-                msg_box.setWindowTitle("Wynik")
-                msg_box.setText("Zgadujący wygrał.")
-                self.usunLitere(litera)
-                if(self.gracz1.rola == True):
-                    self.gracz2.przegrane = self.gracz2.przegrane + 1
-                    self.gracz1.wygrane = self.gracz1.wygrane + 1
-                else:
-                    self.gracz1.przegrane = self.gracz2.przegrane + 1
-                    self.gracz2.wygrane = self.gracz1.wygrane + 1
-                wynik_gracza_1 = "Pseudonim: "+str(self.gracz1.pseudonim)+"\nWygrane: "+str(self.gracz1.wygrane)+"\nPrzegrane: "+str(self.gracz1.przegrane)
-                wynik_gracza_2 = "Pseudonim: " + str(self.gracz2.pseudonim) + "\nWygrane: " + str(self.gracz2.wygrane) + "\nPrzegrane: " + str(self.gracz2.przegrane)
-                with open("gracz1.txt","w") as file:
-                    file.write(wynik_gracza_1)
-                with open("gracz2.txt","w") as file2:
-                    file2.write(wynik_gracza_2)
-                msg_box.setStandardButtons(QMessageBox.Ok)
-                msg_box.exec_()
-                self.window = QtWidgets.QMainWindow()
-                self.ui = Wisielec.Ui_MainWindow(self.gracz1, self.gracz2)
-                self.ui.setupUi(self.window)
-                self.window.show()
-                current_window = QtWidgets.QApplication.activeWindow()
-                current_window.close()
+                if (zgadles == False):
+                    self.licznik_bledow += 1
+                    if self.licznik_bledow == 1:
+                        self.linia1.show()
+                    if self.licznik_bledow == 2:
+                        self.line2.show()
+                    if self.licznik_bledow == 3:
+                        self.line3.show()
+                    if self.licznik_bledow == 4:
+                        self.line4.show()
+                    if self.licznik_bledow == 5:
+                        self.line5.show()
+                        self.label.show()
+                    if self.licznik_bledow == 6:
+                        self.line51.show()
+                        self.line52.show()
+                        self.line53.show()
+                    if self.licznik_bledow == 7:
+                        self.line6.show()
+                    if self.licznik_bledow == 8:
+                        self.line7.show()
+                    if self.licznik_bledow == 9:
+                        self.line8.show()
+                    if self.licznik_bledow == 10:
+                        self.line8_2.show()
+                if (self.haslo == self.haslo_zgadnij):
+                    self.haslo_zgadnij.clear()
+                    self.haslo.clear()
+                    self.uzyte_litery.clear()
+                    self.obiekt_haslo.clear()
+                    self.licznik_bledow = 0
+                    if(self.gracz1.rola == True):
+                        self.gracz2.przegrane = self.gracz2.przegrane + 1
+                        self.gracz1.wygrane = self.gracz1.wygrane + 1
+                    else:
+                        self.gracz1.przegrane = self.gracz2.przegrane + 1
+                        self.gracz2.wygrane = self.gracz1.wygrane + 1
+                    wynik_gracza_1 = "Pseudonim: "+str(self.gracz1.pseudonim)+"\nWygrane: "+str(self.gracz1.wygrane)+"\nPrzegrane: "+str(self.gracz1.przegrane)
+                    wynik_gracza_2 = "Pseudonim: " + str(self.gracz2.pseudonim) + "\nWygrane: " + str(self.gracz2.wygrane) + "\nPrzegrane: " + str(self.gracz2.przegrane)
+                    with open(os.path.join(os.getcwd(), str(self.gracz1.pseudonim)+".txt"),"w") as file:
+                        file.write(wynik_gracza_1)
+                    with open(os.path.join(os.getcwd(), str(self.gracz2.pseudonim)+".txt"),"w") as file2:
+                        file2.write(wynik_gracza_2)
+                    msg_box = QMessageBox()
+                    msg_box.setIcon(QMessageBox.Warning)
+                    msg_box.setWindowTitle("Wynik")
+                    msg_box.setText("Zgadujący wygrał.")
+                    msg_box.setStandardButtons(QMessageBox.Ok)
+                    msg_box.exec_()
+                    self.window = QtWidgets.QMainWindow()
+                    self.ui = Wisielec.Ui_MainWindow(self.gracz1, self.gracz2)
+                    self.ui.setupUi(self.window)
+                    self.window.show()
+                    current_window = QtWidgets.QApplication.activeWindow()
+                    current_window.close()
 
 
 
 
-            if (self.licznik_bledow == 10):
-                msg_box2 = QMessageBox()
-                msg_box2.setIcon(QMessageBox.Warning)
-                msg_box2.setWindowTitle("Wynik")
-                cale_haslo = ''.join(self.haslo)
-                msg_box2.setText("Zgadujący przegrał. Hasło to: " + cale_haslo)
-                self.usunLitere(litera)
-                if(self.gracz1.rola == True):
-                    self.gracz1.przegrane = self.gracz2.przegrane + 1
-                    self.gracz2.wygrane = self.gracz1.wygrane + 1
-                else:
-                    self.gracz2.przegrane = self.gracz2.przegrane + 1
-                    self.gracz1.wygrane = self.gracz1.wygrane + 1
-                msg_box2.setStandardButtons(QMessageBox.Ok)
-                msg_box2.exec_()
-                self.window = QtWidgets.QMainWindow()
-                self.ui = Wisielec.Ui_MainWindow(self.gracz1, self.gracz2)
-                self.ui.setupUi(self.window)
-                self.window.show()
-                current_window = QtWidgets.QApplication.activeWindow()
-                current_window.close()
+
+                if (self.licznik_bledow == 10):
+                    self.haslo_zgadnij.clear()
+                    self.obiekt_haslo.clear()
+                    self.uzyte_litery.clear()
+                    msg_box2 = QMessageBox()
+                    msg_box2.setIcon(QMessageBox.Warning)
+                    msg_box2.setWindowTitle("Wynik")
+                    cale_haslo = ''.join(self.haslo)
+                    msg_box2.setText("Zgadujący przegrał. Hasło to: " + cale_haslo)
+                    self.haslo.clear()
+                    if(self.gracz1.rola == True):
+                        self.gracz1.przegrane = self.gracz2.przegrane + 1
+                        self.gracz2.wygrane = self.gracz1.wygrane + 1
+                    else:
+                        self.gracz2.przegrane = self.gracz2.przegrane + 1
+                        self.gracz1.wygrane = self.gracz1.wygrane + 1
+                    msg_box2.setStandardButtons(QMessageBox.Ok)
+                    wynik_gracza_1 = "Pseudonim: "+str(self.gracz1.pseudonim)+"\nWygrane: "+str(self.gracz1.wygrane)+"\nPrzegrane: "+str(self.gracz1.przegrane)
+                    wynik_gracza_2 = "Pseudonim: " + str(self.gracz2.pseudonim) + "\nWygrane: " + str(self.gracz2.wygrane) + "\nPrzegrane: " + str(self.gracz2.przegrane)
+                    with open(os.path.join(os.getcwd(), str(self.gracz1.pseudonim)+".txt"),"w") as file:
+                        file.write(wynik_gracza_1)
+                    with open(os.path.join(os.getcwd(), str(self.gracz2.pseudonim)+".txt"),"w") as file2:
+                        file2.write(wynik_gracza_2)
+                    msg_box2.exec_()
+                    self.window = QtWidgets.QMainWindow()
+                    self.ui = Wisielec.Ui_MainWindow(self.gracz1, self.gracz2)
+                    self.ui.setupUi(self.window)
+                    self.window.show()
+                    current_window = QtWidgets.QApplication.activeWindow()
+                    current_window.close()
 
     def usunLitere(self, litera):
-        button_name = f"{litera}button"
-        button = getattr(self, button_name)
-        button = QtWidgets.QPushButton()
+        for i in range(len(self.uzyte_litery)):
+            if litera == self.uzyte_litery[i]:
+                msg_box = QMessageBox()
+                msg_box.setIcon(QMessageBox.Warning)
+                msg_box.setWindowTitle("Błąd")
+                msg_box.setText("Już użyłeś tej litery!")
+                msg_box.setStandardButtons(QMessageBox.Ok)
+                msg_box.exec_()
+                return False
+        return True
 
     def setupUi(self, FormGra):
         FormGra.setObjectName("FormGra")

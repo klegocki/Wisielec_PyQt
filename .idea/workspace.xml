@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9fb73c3c-838d-4d1f-a413-585b5fdd09be" name="Changes" comment="Przełączanie pomiędzy oknami wyboru hasła i wyłączeniem apki.">
-      <change afterPath="$PROJECT_DIR$/zdjecie.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Wisielec.py" beforeDir="false" afterPath="$PROJECT_DIR$/Wisielec.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WisielecGra.py" beforeDir="false" afterPath="$PROJECT_DIR$/WisielecGra.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WisielecPokazWylosowaneHaslo.py" beforeDir="false" afterPath="$PROJECT_DIR$/WisielecPokazWylosowaneHaslo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WisielecWybierzTemat.py" beforeDir="false" afterPath="$PROJECT_DIR$/WisielecWybierzTemat.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,15 +27,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Merging main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Stanisław/Desktop/Hangman/Wisielec_PyQt&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Stanisław/Desktop/Hangman/Wisielec_PyQt"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Stanisław\Desktop\Hangman\Wisielec_PyQt" />

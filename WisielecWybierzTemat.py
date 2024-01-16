@@ -45,8 +45,13 @@ class Ui_Form(object):
         if response.status_code == 200:
             odpowiedz = response.json()
             hasla = [f"{entry['word']}" for entry in odpowiedz]
-            self.haslo = random.choice(hasla)
-            self.zmienOkno()
+            do = 0
+            pomocnicza = ""
+            while ((len(pomocnicza) < 3 and len(pomocnicza) > 12) or do == 0):
+                do = 1
+                pomocnicza = random.choice(hasla)
+                self.haslo = [znak for znak in pomocnicza.upper()]
+                self.zmienOkno()
 
         else:
             msg_box = QMessageBox()

@@ -6,6 +6,7 @@ from PyQt5.QtGui import QPixmap, QImage, QPalette, QBrush
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import Qt
 import WisielecWybierzHaslo
+import os
 
 class Gracz:
     def __init__(self,przegrane,wygrane,rola,pseudonim,istnieje):
@@ -227,7 +228,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
 
         palette = QPalette()
-        background_image = QImage(r"C:\GUI\zdjecie.png")
+        background_image = QImage(os.getcwd()+"\zdjecie.png")
         palette.setBrush(QPalette.Window, QBrush(background_image))
         MainWindow.setPalette(palette)
 

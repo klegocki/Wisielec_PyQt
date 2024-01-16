@@ -75,11 +75,12 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
+        Form.setWindowTitle(_translate("Form", "Zatwierdź"))
         self.cofnij_button.setText(_translate("Form", "COFNIJ"))
-        self.akceptuj_button.setText(_translate("Form", "ACKEPTUJ"))
+        self.akceptuj_button.setText(_translate("Form", "AKCEPTUJ"))
         self.informacja_label.setText(_translate("Form", "Twoje hasło to:"))
-        self.haslo_label.setText(self.haslo)
+        tekst_haslo= ''.join(self.haslo)
+        self.haslo_label.setText(tekst_haslo)
 
 
 if __name__ == "__main__":
