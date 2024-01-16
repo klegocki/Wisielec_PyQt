@@ -84,9 +84,9 @@ class Ui_FormGra(object):
                     self.gracz2.wygrane = self.gracz1.wygrane + 1
                 wynik_gracza_1 = "Pseudonim: "+str(self.gracz1.pseudonim)+"\nWygrane: "+str(self.gracz1.wygrane)+"\nPrzegrane: "+str(self.gracz1.przegrane)
                 wynik_gracza_2 = "Pseudonim: " + str(self.gracz2.pseudonim) + "\nWygrane: " + str(self.gracz2.wygrane) + "\nPrzegrane: " + str(self.gracz2.przegrane)
-                with open(str(self.gracz1.pseudonim)+".txt","w") as file:
+                with open("gracz1.txt","w") as file:
                     file.write(wynik_gracza_1)
-                with open(str(self.gracz2.pseudonim)+".txt","w") as file2:
+                with open("gracz2.txt","w") as file2:
                     file2.write(wynik_gracza_2)
                 msg_box.setStandardButtons(QMessageBox.Ok)
                 msg_box.exec_()
