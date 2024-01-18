@@ -20,6 +20,7 @@ class Ui_Form(object):
         self.gracz1 = gracz1
         self.gracz2 = gracz2
         self.haslo = haslo
+        print(self.haslo)
         print(self.gracz1.pseudonim)
         print(self.gracz2.pseudonim)
         print(self.gracz1.rola)
@@ -27,7 +28,7 @@ class Ui_Form(object):
 
     def zmienScene(self, scena):
         if (scena == "COFNIJ"):
-            self.window = QWidget()
+            self.window = QtWidgets.QWidget()
             self.ui = WisielecWybierzTemat.Ui_Form(self.gracz1, self.gracz2)
             self.ui.setupUi(self.window)
             self.window.show()
