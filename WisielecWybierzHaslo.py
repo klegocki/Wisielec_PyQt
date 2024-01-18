@@ -20,10 +20,6 @@ class Ui_Form(object):
     def __init__(self, gracz1, gracz2):
         self.gracz1 = gracz1
         self.gracz2 = gracz2
-        print(self.gracz1.pseudonim)
-        print(self.gracz2.pseudonim)
-        print(self.gracz1.rola)
-        print(self.gracz2.rola)
 
     def zmienOkno (self, nazwaOkna):
         if (nazwaOkna == "API"):

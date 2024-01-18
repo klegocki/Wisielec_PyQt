@@ -20,11 +20,6 @@ class Ui_FormHaslo(object):
     def __init__(self, gracz1, gracz2):
         self.gracz1 = gracz1
         self.gracz2 = gracz2
-        print(self.gracz1.pseudonim)
-        print(self.gracz2.pseudonim)
-        print(self.gracz1.rola)
-        print(self.gracz2.rola)
-
     def dodajLitere(self, litera):
         self.haslo.append(litera)
         self.labelHaslo.setText("".join(self.haslo))
@@ -179,7 +174,7 @@ class Ui_FormHaslo(object):
         font.setPointSize(24)
         self.label.setFont(font)
         self.label.setObjectName("label")
-        if (self.gracz1.rola == False  and self.gracz2.rola == True):
+        if (self.gracz1.rola == False):
             self.label.setText(str(self.gracz1.pseudonim))
         else:
             self.label.setText(str(self.gracz2.pseudonim))

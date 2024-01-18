@@ -51,8 +51,6 @@ class Ui_MainWindow(object):
     def __init__(self, Startgracz1, Startgracz2):
         self.gracz1 = Startgracz1
         self.gracz2 = Startgracz2
-        print( self.gracz1.istnieje)
-        print(self.gracz2.istnieje)
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -270,8 +268,9 @@ class Ui_MainWindow(object):
             self.gracz1.rola = False
             self.gracz1.pseudonim = self.input_gracz1.toPlainText()
             self.gracz1.istnieje = 1
+            if (self.gracz2.istnieje == 1 and self.gracz2.rola == False):
+                self.gracz1.rola = True
             self.nick_gracza1.setText(self.gracz1.pseudonim)
-            print("gracz1: " + self.gracz1.pseudonim)
             #zmiana gui po podaniu nicku gracza
             self.przycisk_gracz1_potwierdz.hide()
             self.input_gracz1.clear()
@@ -301,8 +300,9 @@ class Ui_MainWindow(object):
             self.gracz2.rola = True
             self.gracz2.pseudonim = self.input_gracz2.toPlainText()
             self.gracz2.istnieje = 1
+            if (self.gracz1.istnieje == 1 and self.gracz1.rola == True):
+                self.gracz2.rola = False
             self.nick_gracza2.setText(self.gracz2.pseudonim)
-            print("gracz2: " + self.gracz2.pseudonim)
 
             # zmiana gui po podaniu nicku gracza
             self.przycisk_gracz2_potwierdz.hide()
@@ -327,14 +327,22 @@ class Ui_MainWindow(object):
 
 #usuwanie gracza1
     def UsunGracza1(self):
-        if(self.gracz1.istnieje ==1):
-            del self.gracz1 #usunięcie obiektu gracza
+        if(self.gracz1.istnieje == 1):
+            self.gracz1.istnieje = 0 #usunięcie obiektu gracza
+            self.gracz1.pseudonim = ""
+            self.gracz1.wygrane = 0
+            self.gracz1.przegrane = 0
+            self.gracz1.rola = True
             #zmiana gui po usunięciu
             self.nick_gracza1.setText("Gracz1")
             self.przycisk_gracz1_potwierdz.show()
             self.input_gracz1.show()
             self.gracz1_wygrane.setText("Brak gracza.")
             self.gracz1_przegrane.setText("Brak gracza.")
+            if(self.gracz2.rola == False):
+                self.gracz1_rola.setText("Rola: zgadujący")
+            else:
+                self.gracz1_rola.setText("Rola: wpisujący")
             self.przycisk_gracz1_usun.hide()
             self.przycisk_gracz1_potwierdz.setGeometry(QtCore.QRect(20, 77, 152, 40))
             self.przycisk_gracz1_usun.setGeometry(QtCore.QRect(20, 122, 152, 40))
@@ -344,13 +352,21 @@ class Ui_MainWindow(object):
 
     def UsunGracza2(self):
         if(self.gracz2.istnieje == 1):
-            del self.gracz2 #usunięcie obiektu gracza
+            self.gracz2.istnieje = 0  # usunięcie obiektu gracza
+            self.gracz2.pseudonim = ""
+            self.gracz2.wygrane = 0
+            self.gracz2.przegrane = 0
+            self.gracz2.rola = True
             #zmiana gui po usunięciu
             self.nick_gracza2.setText("Gracz2")
             self.przycisk_gracz2_potwierdz.show()
             self.input_gracz2.show()
             self.gracz2_wygrane.setText("Brak gracza.")
             self.gracz2_przegrane.setText("Brak gracza.")
+            if(self.gracz1.rola == False):
+                self.gracz2_rola.setText("Rola: zgadujący")
+            else:
+                self.gracz2_rola.setText("Rola: wpisujący")
             self.przycisk_gracz2_usun.hide()
             self.przycisk_gracz2_potwierdz.setGeometry(QtCore.QRect(960, 77, 152, 40))
             self.przycisk_gracz2_usun.setGeometry(QtCore.QRect(970, 122, 152, 40))
@@ -362,16 +378,22 @@ class Ui_MainWindow(object):
 
 
     def zamiana_rol(self):
+
         if self.gracz1.istnieje == 1 and self.gracz2.istnieje == 1:
-            self.gracz1, self.gracz2 = self.gracz2, self.gracz1
-            print(self.gracz1.pseudonim)
-            print(self.gracz2.pseudonim)
-            if(self.gracz1.rola == 1 and self.gracz2.rola == 0):
+            self.gracz1.rola, self.gracz2.rola = self.gracz2.rola, self.gracz1.rola
+            if(self.gracz1.rola == True and self.gracz2.rola == False):
                 self.gracz1_rola.setText("Rola: zgadujący")
-                self.gracz2_rola.setText("Rola:wpisujący")
+                self.gracz2_rola.setText("Rola: wpisujący")
             else:
-                self.gracz1_rola.setText("Rola:wpisujący")
-                self.gracz2_rola.setText("Rola:zgadujący")
+                self.gracz1_rola.setText("Rola: wpisujący")
+                self.gracz2_rola.setText("Rola: zgadujący")
+        else:
+            msg_box = QMessageBox()
+            msg_box.setIcon(QMessageBox.Warning)
+            msg_box.setWindowTitle("Błąd")
+            msg_box.setText("Nie utworzono graczy.")
+            msg_box.setStandardButtons(QMessageBox.Ok)
+            msg_box.exec_()
 
     def ZmienUiPoskonczonejRozgrywce(self):
         #UI gracza1

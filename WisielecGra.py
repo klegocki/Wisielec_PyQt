@@ -23,13 +23,12 @@ class Ui_FormGra(object):
         self.gracz1 = gracz1
         self.gracz2 = gracz2
         self.haslo = haslo
-        print(self.haslo)
+        self.temp_haslo = self.haslo
+        self.haslo = [char for char in self.haslo if char != " "]
         self.haslo_zgadnij = ['_' for _ in range(len(self.haslo))]
-        print(self.haslo_zgadnij)
 
     def dodajLitere(self, litera):
 
-        print(litera)
 
         if self.usunLitere(litera):
             self.uzyte_litery.append(litera)
@@ -42,9 +41,6 @@ class Ui_FormGra(object):
                         self.obiekt_haslo[j].show()
                         self.obiekt_haslo[j].setText(self.haslo[j])
                         self.haslo_zgadnij[j] = self.haslo[j]
-                #for x in self.haslo_zgadnij:
-                #    print(x)
-
                 if (zgadles == False):
                     self.licznik_bledow += 1
                     if self.licznik_bledow == 1:
@@ -73,15 +69,16 @@ class Ui_FormGra(object):
                 if (self.haslo == self.haslo_zgadnij):
                     self.haslo_zgadnij.clear()
                     self.haslo.clear()
+                    self.temp_haslo.clear()
                     self.uzyte_litery.clear()
                     self.obiekt_haslo.clear()
                     self.licznik_bledow = 0
                     if(self.gracz1.rola == True):
-                        self.gracz2.przegrane = self.gracz2.przegrane + 1
-                        self.gracz1.wygrane = self.gracz1.wygrane + 1
+                        self.gracz2.przegrane += 1
+                        self.gracz1.wygrane += 1
                     else:
-                        self.gracz1.przegrane = self.gracz2.przegrane + 1
-                        self.gracz2.wygrane = self.gracz1.wygrane + 1
+                        self.gracz1.przegrane += 1
+                        self.gracz2.wygrane += 1
                     wynik_gracza_1 = "Pseudonim: "+str(self.gracz1.pseudonim)+"\nWygrane: "+str(self.gracz1.wygrane)+"\nPrzegrane: "+str(self.gracz1.przegrane)
                     wynik_gracza_2 = "Pseudonim: " + str(self.gracz2.pseudonim) + "\nWygrane: " + str(self.gracz2.wygrane) + "\nPrzegrane: " + str(self.gracz2.przegrane)
                     with open(os.path.join(os.getcwd(), str(self.gracz1.pseudonim)+".txt"),"w") as file:
@@ -107,6 +104,7 @@ class Ui_FormGra(object):
 
                 if (self.licznik_bledow == 10):
                     self.haslo_zgadnij.clear()
+                    self.temp_haslo.clear()
                     self.obiekt_haslo.clear()
                     self.uzyte_litery.clear()
                     msg_box2 = QMessageBox()
@@ -116,11 +114,11 @@ class Ui_FormGra(object):
                     msg_box2.setText("Zgadujący przegrał. Hasło to: " + cale_haslo)
                     self.haslo.clear()
                     if(self.gracz1.rola == True):
-                        self.gracz1.przegrane = self.gracz2.przegrane + 1
-                        self.gracz2.wygrane = self.gracz1.wygrane + 1
+                        self.gracz1.przegrane += 1
+                        self.gracz2.wygrane += 1
                     else:
-                        self.gracz2.przegrane = self.gracz2.przegrane + 1
-                        self.gracz1.wygrane = self.gracz1.wygrane + 1
+                        self.gracz2.przegrane += 1
+                        self.gracz1.wygrane +=  1
                     msg_box2.setStandardButtons(QMessageBox.Ok)
                     wynik_gracza_1 = "Pseudonim: "+str(self.gracz1.pseudonim)+"\nWygrane: "+str(self.gracz1.wygrane)+"\nPrzegrane: "+str(self.gracz1.przegrane)
                     wynik_gracza_2 = "Pseudonim: " + str(self.gracz2.pseudonim) + "\nWygrane: " + str(self.gracz2.wygrane) + "\nPrzegrane: " + str(self.gracz2.przegrane)
@@ -523,8 +521,12 @@ class Ui_FormGra(object):
         self.haslo3_2.setFont(font)
         self.haslo3_2.setAlignment(QtCore.Qt.AlignCenter)
         self.haslo3_2.setObjectName("haslo3_2")
-        for i in range(len(self.haslo)):
-
+        for i in range(len(self.temp_haslo)):
+            k = -1
+            if self.temp_haslo[i] == " ":
+                k = 0
+            if( k == 0 ):
+                continue
             if(i == 0):
                 self.haslo1.show()
                 self.obiekt_haslo.append(self.haslo1_2)
@@ -561,6 +563,8 @@ class Ui_FormGra(object):
             if(i == 11):
                 self.haslo12.show()
                 self.obiekt_haslo.append(self.haslo12_2)
+
+
         self.retranslateUi(FormGra)
         QtCore.QMetaObject.connectSlotsByName(FormGra)
 

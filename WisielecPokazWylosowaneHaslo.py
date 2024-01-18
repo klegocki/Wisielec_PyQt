@@ -20,10 +20,7 @@ class Ui_Form(object):
         self.gracz1 = gracz1
         self.gracz2 = gracz2
         self.haslo = haslo
-        print(self.gracz1.pseudonim)
-        print(self.gracz2.pseudonim)
-        print(self.gracz1.rola)
-        print(self.gracz2.rola)
+
 
     def zmienScene(self, scena):
         if (scena == "COFNIJ"):
