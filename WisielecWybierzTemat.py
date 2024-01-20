@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 
 # Form implementation generated from reading ui file 'WisielecWybierzTemat.ui'
 #
@@ -9,6 +10,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPalette, QImage, QBrush
 from PyQt5.QtWidgets import QWidget, QMessageBox
 import WisielecPokazWylosowaneHaslo
 import requests
@@ -75,7 +77,7 @@ class Ui_Form(object):
 
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(589, 376)
+        Form.setFixedSize(589,376)
         self.skarby_button = QtWidgets.QPushButton(Form, clicked=lambda: self.HaslaAPI("Treasure"))
         self.skarby_button.setGeometry(QtCore.QRect(300, 80, 271, 131))
         font = QtGui.QFont()
@@ -89,11 +91,12 @@ class Ui_Form(object):
         self.piraci_button.setFont(font)
         self.piraci_button.setObjectName("piraci_button")
         self.labelInstrukcja = QtWidgets.QLabel(Form)
-        self.labelInstrukcja.setGeometry(QtCore.QRect(190, 20, 211, 41))
+        self.labelInstrukcja.setGeometry(QtCore.QRect(170, 10, 260, 41))
         font = QtGui.QFont()
         font.setPointSize(24)
         self.labelInstrukcja.setFont(font)
         self.labelInstrukcja.setObjectName("labelInstrukcja")
+        self.labelInstrukcja.setStyleSheet("color: white;")
         self.wody_button = QtWidgets.QPushButton(Form, clicked=lambda: self.HaslaAPI("Water"))
         self.wody_button.setGeometry(QtCore.QRect(10, 220, 271, 131))
         font = QtGui.QFont()
@@ -108,6 +111,11 @@ class Ui_Form(object):
         self.miasta_button.setFont(font)
         self.miasta_button.setObjectName("miasta_button")
 
+        palette = QPalette()
+        background_image = QImage(os.getcwd() + "\zdjecie3.png")
+        palette.setBrush(QPalette.Window, QBrush(background_image))
+
+        Form.setPalette(palette)
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
 

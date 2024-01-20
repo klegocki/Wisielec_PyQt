@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 
 # Form implementation generated from reading ui file 'WisielecPokazWylosowaneHaslo.ui'
 #
@@ -9,6 +10,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPalette, QImage, QBrush
 from PyQt5.QtWidgets import QWidget
 
 import WisielecWybierzTemat
@@ -40,7 +42,7 @@ class Ui_Form(object):
 
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(600, 250)
+        Form.setFixedSize(600,250)
         self.cofnij_button = QtWidgets.QPushButton(Form, clicked=lambda: self.zmienScene("COFNIJ"))
         self.cofnij_button.setGeometry(QtCore.QRect(10, 80, 271, 131))
         font = QtGui.QFont()
@@ -54,18 +56,26 @@ class Ui_Form(object):
         self.akceptuj_button.setFont(font)
         self.akceptuj_button.setObjectName("akceptuj_button")
         self.informacja_label = QtWidgets.QLabel(Form)
-        self.informacja_label.setGeometry(QtCore.QRect(10, 20, 151, 41))
+        self.informacja_label.setGeometry(QtCore.QRect(25, 1, 200, 41))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.informacja_label.setFont(font)
         self.informacja_label.setObjectName("informacja_label")
         self.haslo_label = QtWidgets.QLabel(Form)
-        self.haslo_label.setGeometry(QtCore.QRect(160, 20, 431, 41))
+        self.haslo_label.setGeometry(QtCore.QRect(225, 1, 431, 41))
+        self.informacja_label.setStyleSheet("color: white;")
         font = QtGui.QFont()
         font.setPointSize(16)
         self.haslo_label.setFont(font)
         self.haslo_label.setText("")
         self.haslo_label.setObjectName("haslo_label")
+        self.haslo_label.setStyleSheet("color: white;")
+
+        palette = QPalette()
+        background_image = QImage(os.getcwd() + "\zdjecie4.png")
+        palette.setBrush(QPalette.Window, QBrush(background_image))
+        Form.setPalette(palette)
+
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)

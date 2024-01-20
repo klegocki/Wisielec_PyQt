@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 
 # Form implementation generated from reading ui file 'WisielecWybierzHaslo.ui'
 #
@@ -9,6 +10,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPalette, QImage, QBrush
 from PyQt5.QtWidgets import QWidget
 
 import WisielecWpiszHaslo
@@ -40,7 +42,7 @@ class Ui_Form(object):
 
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(600, 250)
+        Form.setFixedSize(600, 250)
         self.API_buton = QtWidgets.QPushButton(Form, clicked=lambda: self.zmienOkno("API"))
         self.API_buton.setGeometry(QtCore.QRect(10, 80, 271, 131))
         font = QtGui.QFont()
@@ -59,6 +61,11 @@ class Ui_Form(object):
         font.setPointSize(24)
         self.labelInstrukcja.setFont(font)
         self.labelInstrukcja.setObjectName("labelInstrukcja")
+
+        palette = QPalette()
+        background_image = QImage(os.getcwd() + "\zdjecie2.png")
+        palette.setBrush(QPalette.Window, QBrush(background_image))
+        Form.setPalette(palette)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)

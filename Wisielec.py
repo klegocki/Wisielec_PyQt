@@ -151,7 +151,7 @@ class Ui_MainWindow(object):
         #gracz1 rola
         self.gracz1_rola = QtWidgets.QLabel(self.centralwidget)
         self.gracz1_rola.setEnabled(True)
-        self.gracz1_rola.setGeometry(QtCore.QRect(20, 105, 170, 51))
+        self.gracz1_rola.setGeometry(QtCore.QRect(20, 105, 190, 51))
         self.gracz1_rola.setText("")
         self.gracz1_rola.setObjectName("gracz1_rola")
         self.gracz1_rola.setStyleSheet("color: white;")
@@ -174,7 +174,7 @@ class Ui_MainWindow(object):
         #gracz1 przegrane
         self.gracz1_przegrane = QtWidgets.QLabel(self.centralwidget)
         self.gracz1_przegrane.setEnabled(True)
-        self.gracz1_przegrane.setGeometry(QtCore.QRect(20, 170, 151, 51))
+        self.gracz1_przegrane.setGeometry(QtCore.QRect(20, 170, 220, 51))
         self.gracz1_przegrane.setText("Brak gracza")
         self.gracz1_przegrane.setObjectName("gracz1_przegrane")
         self.gracz1_przegrane.setStyleSheet("color: white;")
@@ -277,9 +277,9 @@ class Ui_MainWindow(object):
             self.input_gracz1.hide()
             self.przycisk_gracz1_usun.show()
             self.przycisk_gracz1_usun.setGeometry(QtCore.QRect(20, 40, 152, 40))
-            self.gracz1_rola.setGeometry(QtCore.QRect(20, 68, 170, 51))
+            self.gracz1_rola.setGeometry(QtCore.QRect(20, 68, 190, 51))
             self.gracz1_wygrane.setGeometry(QtCore.QRect(20, 98, 170, 51))
-            self.gracz1_przegrane.setGeometry(QtCore.QRect(20, 130, 151, 51))
+            self.gracz1_przegrane.setGeometry(QtCore.QRect(20, 130, 220, 51))
             self.nick_gracza1.setText(str(self.gracz1.pseudonim))
             self.gracz1_wygrane.setText("Wygrane "+str(self.gracz1.pseudonim) + ": " + str(self.gracz1.wygrane))
             self.gracz1_przegrane.setText("Przegrane "+str(self.gracz1.pseudonim) + ": " + str(self.gracz1.przegrane))
@@ -346,9 +346,9 @@ class Ui_MainWindow(object):
             self.przycisk_gracz1_usun.hide()
             self.przycisk_gracz1_potwierdz.setGeometry(QtCore.QRect(20, 77, 152, 40))
             self.przycisk_gracz1_usun.setGeometry(QtCore.QRect(20, 122, 152, 40))
-            self.gracz1_rola.setGeometry(QtCore.QRect(20, 105, 170, 51))
+            self.gracz1_rola.setGeometry(QtCore.QRect(20, 105, 190, 51))
             self.gracz1_wygrane.setGeometry(QtCore.QRect(20, 135, 170, 51))
-            self.gracz1_przegrane.setGeometry(QtCore.QRect(20, 167, 151, 51))
+            self.gracz1_przegrane.setGeometry(QtCore.QRect(20, 167, 220, 51))
 
     def UsunGracza2(self):
         if(self.gracz2.istnieje == 1):
@@ -401,9 +401,9 @@ class Ui_MainWindow(object):
         self.input_gracz1.hide()
         self.przycisk_gracz1_usun.show()
         self.przycisk_gracz1_usun.setGeometry(QtCore.QRect(20, 40, 152, 40))
-        self.gracz1_rola.setGeometry(QtCore.QRect(20, 68, 151, 51))
+        self.gracz1_rola.setGeometry(QtCore.QRect(20, 68, 190, 51))
         self.gracz1_wygrane.setGeometry(QtCore.QRect(20, 98, 170, 51))
-        self.gracz1_przegrane.setGeometry(QtCore.QRect(20, 130, 151, 51))
+        self.gracz1_przegrane.setGeometry(QtCore.QRect(20, 130, 220, 51))
         self.gracz1_wygrane.setText("Wygrane "+ str(self.gracz1.pseudonim) + ": "+ str(self.gracz1.wygrane))
         self.gracz1_przegrane.setText("Przegrane "+str(self.gracz1.pseudonim) + ": "+ str(self.gracz1.przegrane))
 

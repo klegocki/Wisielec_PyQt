@@ -1,0 +1,3 @@
+Pseudonim: x
+Wygrane: 1
+Przegrane: 0

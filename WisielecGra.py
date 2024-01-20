@@ -9,6 +9,7 @@
 
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPalette, QBrush, QImage
 from PyQt5.QtWidgets import QMessageBox
 import os
 import Wisielec
@@ -148,7 +149,7 @@ class Ui_FormGra(object):
 
     def setupUi(self, FormGra):
         FormGra.setObjectName("FormGra")
-        FormGra.resize(1127, 621)
+        FormGra.setFixedSize(1127, 621)
         self.linia1 = QtWidgets.QFrame(FormGra)
         self.linia1.setGeometry(QtCore.QRect(600, 460, 241, 91))
         font = QtGui.QFont()
@@ -564,6 +565,10 @@ class Ui_FormGra(object):
                 self.haslo12.show()
                 self.obiekt_haslo.append(self.haslo12_2)
 
+        palette = QPalette()
+        background_image = QImage(os.getcwd() + "\zdjecie6.png")
+        palette.setBrush(QPalette.Window, QBrush(background_image))
+        FormGra.setPalette(palette)
 
         self.retranslateUi(FormGra)
         QtCore.QMetaObject.connectSlotsByName(FormGra)

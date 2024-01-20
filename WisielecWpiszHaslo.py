@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import os
 # Form implementation generated from reading ui file 'WisielecWpiszHaslo.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
@@ -9,6 +9,7 @@
 
 import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPalette, QImage, QBrush
 from PyQt5.QtWidgets import QMessageBox
 import WisielecGra
 
@@ -66,7 +67,7 @@ class Ui_FormHaslo(object):
 
     def setupUi(self, FormHaslo):
         FormHaslo.setObjectName("FormHaslo")
-        FormHaslo.resize(788, 459)
+        FormHaslo.setFixedSize(788,459)
         self.HVbutton = QtWidgets.QPushButton(FormHaslo, clicked=lambda: self.dodajLitere("V"))
         self.HVbutton.setGeometry(QtCore.QRect(330, 390, 35, 35))
         self.HVbutton.setObjectName("HVbutton")
@@ -146,7 +147,7 @@ class Ui_FormHaslo(object):
         self.HCbutton.setGeometry(QtCore.QRect(280, 390, 35, 35))
         self.HCbutton.setObjectName("HCbutton")
         self.labelInstrukcja = QtWidgets.QLabel(FormHaslo)
-        self.labelInstrukcja.setGeometry(QtCore.QRect(255, 10, 270, 90))
+        self.labelInstrukcja.setGeometry(QtCore.QRect(255, 1, 270, 90))
         font = QtGui.QFont()
         font.setPointSize(24)
         self.labelInstrukcja.setFont(font)
@@ -169,7 +170,7 @@ class Ui_FormHaslo(object):
         self.Zatwierdzbutton.setGeometry(QtCore.QRect(500, 250, 151, 41))
         self.Zatwierdzbutton.setObjectName("Zatwierdzbutton")
         self.label = QtWidgets.QLabel(FormHaslo)
-        self.label.setGeometry(QtCore.QRect(520, 10, 500, 90))
+        self.label.setGeometry(QtCore.QRect(520, 1, 500, 90))
         font = QtGui.QFont()
         font.setPointSize(24)
         self.label.setFont(font)
@@ -178,6 +179,11 @@ class Ui_FormHaslo(object):
             self.label.setText(str(self.gracz1.pseudonim))
         else:
             self.label.setText(str(self.gracz2.pseudonim))
+
+        palette = QPalette()
+        background_image = QImage(os.getcwd() + "\zdjecie5.png")
+        palette.setBrush(QPalette.Window, QBrush(background_image))
+        FormHaslo.setPalette(palette)
 
         self.retranslateUi(FormHaslo)
         QtCore.QMetaObject.connectSlotsByName(FormHaslo)
