@@ -56,20 +56,14 @@ class Ui_Form(object):
         self.akceptuj_button.setFont(font)
         self.akceptuj_button.setObjectName("akceptuj_button")
         self.informacja_label = QtWidgets.QLabel(Form)
-        self.informacja_label.setGeometry(QtCore.QRect(25, 1, 200, 41))
+        self.informacja_label.setGeometry(QtCore.QRect(25, 1, 500, 41))
         font = QtGui.QFont()
         font.setPointSize(16)
         self.informacja_label.setFont(font)
         self.informacja_label.setObjectName("informacja_label")
-        self.haslo_label = QtWidgets.QLabel(Form)
-        self.haslo_label.setGeometry(QtCore.QRect(225, 1, 431, 41))
+
         self.informacja_label.setStyleSheet("color: white;")
-        font = QtGui.QFont()
-        font.setPointSize(16)
-        self.haslo_label.setFont(font)
-        self.haslo_label.setText("")
-        self.haslo_label.setObjectName("haslo_label")
-        self.haslo_label.setStyleSheet("color: white;")
+
 
         palette = QPalette()
         background_image = QImage(os.getcwd() + "\zdjecie4.png")
@@ -85,9 +79,10 @@ class Ui_Form(object):
         Form.setWindowTitle(_translate("Form", "Zatwierdź"))
         self.cofnij_button.setText(_translate("Form", "COFNIJ"))
         self.akceptuj_button.setText(_translate("Form", "AKCEPTUJ"))
-        self.informacja_label.setText(_translate("Form", "Twoje hasło to:"))
+
         tekst_haslo= ''.join(self.haslo)
-        self.haslo_label.setText(tekst_haslo)
+
+        self.informacja_label.setText("Twoje hasło to: "+str(tekst_haslo))
 
 
 if __name__ == "__main__":

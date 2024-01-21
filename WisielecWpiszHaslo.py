@@ -176,9 +176,9 @@ class Ui_FormHaslo(object):
         self.label.setFont(font)
         self.label.setObjectName("label")
         if (self.gracz1.rola == False):
-            self.label.setText(str(self.gracz1.pseudonim))
+            self.labelInstrukcja.setText("Hasło wpisuje: "+str(self.gracz1.pseudonim))
         else:
-            self.label.setText(str(self.gracz2.pseudonim))
+            self.labelInstrukcja.setText("Hasło wpisuje: "+str(self.gracz2.pseudonim))
 
         palette = QPalette()
         background_image = QImage(os.getcwd() + "\zdjecie5.png")
@@ -217,7 +217,7 @@ class Ui_FormHaslo(object):
         self.HJbutton.setText(_translate("FormHaslo", "J"))
         self.HEbutton.setText(_translate("FormHaslo", "E"))
         self.HCbutton.setText(_translate("FormHaslo", "C"))
-        self.labelInstrukcja.setText(_translate("FormHaslo", "Hasło wpisuje: "))
+        #self.labelInstrukcja.setText(_translate("FormHaslo", "Haso wpisuje: "))
         self.Cofnijbutton.setText(_translate("FormHaslo", "COFNIJ"))
         self.Usunbutton.setText(_translate("FormHaslo", "USUN"))
         self.Zatwierdzbutton.setText(_translate("FormHaslo", "ZATWIERDZ"))

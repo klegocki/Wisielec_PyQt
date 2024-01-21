@@ -61,6 +61,9 @@ class Ui_Form(object):
         font.setPointSize(24)
         self.labelInstrukcja.setFont(font)
         self.labelInstrukcja.setObjectName("labelInstrukcja")
+        self.labelInstrukcja.setStyleSheet("color: white;")
+
+
 
         palette = QPalette()
         background_image = QImage(os.getcwd() + "\zdjecie2.png")
