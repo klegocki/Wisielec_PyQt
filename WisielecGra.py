@@ -544,6 +544,8 @@ class Ui_FormGra(object):
         self.haslo8_2.setStyleSheet("color: white;")
         self.haslo9_2.setStyleSheet("color: white;")
         self.haslo10_2.setStyleSheet("color: white;")
+        self.haslo12_2.setStyleSheet("color: white;")
+        self.haslo12.setStyleSheet("color: white;")
         self.line8.setStyleSheet("color: white;")
         self.line6.setStyleSheet("color: white;")
         self.line7.setStyleSheet("color: white;")
